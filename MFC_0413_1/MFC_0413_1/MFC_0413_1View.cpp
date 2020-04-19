@@ -33,7 +33,7 @@ END_MESSAGE_MAP()
 CMFC_0413_1View::CMFC_0413_1View()
 {
 	// TODO: 在此处添加构造代码
-
+	flag = 0;
 }
 
 CMFC_0413_1View::~CMFC_0413_1View()
@@ -50,13 +50,17 @@ BOOL CMFC_0413_1View::PreCreateWindow(CREATESTRUCT& cs)
 
 // CMFC_0413_1View 绘制
 
-void CMFC_0413_1View::OnDraw(CDC* /*pDC*/)
+void CMFC_0413_1View::OnDraw(CDC* pDC)
 {
 	CMFC_0413_1Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
 	CClientDC dc(this);
+	pDoc->cr.left = x - 50;
+	pDoc->cr.top = y - 50;
+	pDoc->cr.right = x + 50;
+	pDoc->cr.bottom = y + 50;
 	dc.Rectangle(pDoc->cr.left, pDoc->cr.top, pDoc->cr.right, pDoc->cr.bottom);
 	// TODO: 在此处为本机数据添加绘制代码
 }
@@ -89,14 +93,22 @@ CMFC_0413_1Doc* CMFC_0413_1View::GetDocument() const // 非调试版本是内联的
 void CMFC_0413_1View::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-
+	SetCapture();
+	x = point.x;
+	y = point.y;
+	flag += 1;
 	CView::OnLButtonDown(nFlags, point);
 }
 
 void CMFC_0413_1View::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	
+	ReleaseCapture();
+	x1 = point.x;
+	y1 = point.y;
+	x = x1;
+	y = y1;
+	Invalidate();
 	CView::OnLButtonUp(nFlags, point);
 }
 
