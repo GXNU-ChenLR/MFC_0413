@@ -33,7 +33,7 @@ END_MESSAGE_MAP()
 CMFC_0413_1View::CMFC_0413_1View()
 {
 	// TODO: 在此处添加构造代码
-	flag = 0;
+	flag = 0; f = 0;
 }
 
 CMFC_0413_1View::~CMFC_0413_1View()
@@ -97,6 +97,7 @@ void CMFC_0413_1View::OnLButtonDown(UINT nFlags, CPoint point)
 	x = point.x;
 	y = point.y;
 	flag += 1;
+	f = 1;
 	CView::OnLButtonDown(nFlags, point);
 }
 
