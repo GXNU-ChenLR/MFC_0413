@@ -30,7 +30,10 @@ END_MESSAGE_MAP()
 CMFC_0413_3Doc::CMFC_0413_3Doc()
 {
 	// TODO: 在此添加一次性构造代码
-
+	cr.top = 275;
+	cr.left = 0;
+	cr.bottom = 325;
+	cr.right = 50;
 }
 
 CMFC_0413_3Doc::~CMFC_0413_3Doc()
